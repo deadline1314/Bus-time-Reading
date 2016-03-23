@@ -14,7 +14,7 @@ public class SolveSudoku {
 			return true;
 		}
 
-		for (int i = 0; i <= 9; i++) {
+		for (int i = 1; i <= 9; i++) {
 			if (isValid(arr, row, col, i)) {
 				arr[row][col] = i;
 				if (solveSudoku(arr))
