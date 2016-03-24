@@ -9,6 +9,7 @@ public class SolveSudoku {
 		solveSudokuHelp(arr);
 	}
 
+<<<<<<< HEAD
 	static boolean solveSudokuHelp(int[][] arr) {
 
 		for (int row = 0; row < arr[0].length; row++) {
@@ -25,6 +26,15 @@ public class SolveSudoku {
 					}
 
 				}
+=======
+		for (int i = 1; i <= 9; i++) {
+			if (isValid(arr, row, col, i)) {
+				arr[row][col] = i;
+				if (solveSudoku(arr))
+					return true;
+				else
+					arr[row][col] = 0;
+>>>>>>> origin/master
 			}
 		}
 		return false;
