@@ -42,6 +42,7 @@ public class Trie {
 			if (i == arr.length - 1)
 				curr.isTerminalChar = true;
 		}
+
 	}
 
 	private Node2 findChild(Node2 node, char ch) {
@@ -69,13 +70,40 @@ public class Trie {
 	public void createSuffixTrie(String str) {
 		str += "$";
 		for (int i = 0; i < str.length(); i++) {
-			String sub = str.substring(str.length() - 1 - i, i + 1);
+			String sub = str.substring(str.length() - 1 - i, str.length());
 			insert(sub);
+			// System.out.println(sub);
 		}
 
 	}
 
+	public int occurNumOfSubstring(String substr) {
+		char[] arr = substr.toCharArray();
+		int count = 0;
+
+		Node2 curr = root;
+		for (int i = 0; i < arr.length; i++) {
+			Node2 child = findChild(curr, arr[i]);
+			if (child != null)
+				curr = child;
+		}
+		if (curr.ch == arr[arr.length - 1]) {
+			for (int i = 0; i < curr.children.size(); i++) {
+				if (findChild(curr, '$').ch == '$')
+					count++;
+			}
+		}
+		return count;
+
+	}
+
+
 	public static void main(String[] args) {
+		String str = "ababbab";
+		Trie tr = new Trie();
+		tr.createSuffixTrie(str);
+		System.out.println(tr.doesExist("ab"));
+		System.out.println(tr.occurNumOfSubstring("bab"));
 
 	}
 
