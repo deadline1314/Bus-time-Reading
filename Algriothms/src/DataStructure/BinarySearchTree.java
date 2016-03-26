@@ -416,9 +416,9 @@ public class BinarySearchTree {
 		// bs.printLevelOrder();
 		// bs.printZigZag();
 //		bs.printPerimeter();
-//		bs.printPerimeter1();
+		bs.printPerimeter1();
 //		bs.bottomView();
-		System.out.println(bs.getNodeLevel(7));
+//		System.out.println(bs.getNodeLevel(7));
 
 	}
 }

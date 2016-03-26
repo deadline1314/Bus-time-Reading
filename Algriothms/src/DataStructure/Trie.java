@@ -78,33 +78,74 @@ public class Trie {
 	}
 
 	public int occurNumOfSubstring(String substr) {
+		if (substr.length() == 0)
+			return Integer.MAX_VALUE;
 		char[] arr = substr.toCharArray();
-		int count = 0;
 
 		Node2 curr = root;
 		for (int i = 0; i < arr.length; i++) {
 			Node2 child = findChild(curr, arr[i]);
-			if (child != null)
+			if (child != null) {
 				curr = child;
+			} else {
+				return 0;
+			}
 		}
 		if (curr.ch == arr[arr.length - 1]) {
-			for (int i = 0; i < curr.children.size(); i++) {
-				if (findChild(curr, '$').ch == '$')
-					count++;
-			}
+			count = DFSCount(curr, '$');
 		}
 		return count;
 
 	}
 
+	int count = 0;
+
+	int DFSCount(Node2 curr, char c) {
+		Node2 temp = null;
+		for (int i = 0; i < curr.children.size(); i++) {
+			temp = findChild(curr, c);
+			if (temp == null) {
+				DFSCount(curr.children.get(i), c);
+			} else {
+				count++;
+			}
+		}
+		return count;
+	}
+
+	public String longestRepeatedSubstr(String str) {
+		StringBuilder sb = new StringBuilder();
+		String result = "";
+		DFS(result, sb, root);
+		return result;
+	}
+
+	void DFS(String result, StringBuilder sb, Node2 current) {
+		System.out.println(sb.toString());
+		System.out.println(count);
+		if (occurNumOfSubstring(sb.toString()) < 2) {
+			System.out.println("1111");
+			result = result.length() > sb.toString().length() ? result : sb.toString();
+			// System.out.println(result);
+			return;
+		}
+		// System.out.println(sb.toString() + "]]");
+		for (Node2 cur : current.children) {
+			// System.out.println(sb.toString() + "||");
+			sb.append(cur.ch);
+			// System.out.println(sb.toString());
+			DFS(result, sb, cur);
+			sb.deleteCharAt(sb.length() - 1);
+		}
+	}
 
 	public static void main(String[] args) {
-		String str = "ababbab";
+		String str = "bananab";
 		Trie tr = new Trie();
 		tr.createSuffixTrie(str);
-		System.out.println(tr.doesExist("ab"));
-		System.out.println(tr.occurNumOfSubstring("bab"));
-
+		// System.out.println(tr.doesExist("an"));
+		// System.out.println(tr.occurNumOfSubstring("b$"));
+		System.out.println(tr.longestRepeatedSubstr("banana"));
 	}
 
 }
