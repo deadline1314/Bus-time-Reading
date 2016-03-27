@@ -8,8 +8,6 @@ class Node2 {
 	public boolean isTerminalChar;
 	public List<Node2> children;
 
-	private Node2() {
-	}
 
 	public Node2(char ch) {
 		this.ch = ch;
@@ -99,16 +97,13 @@ public class Trie {
 	}
 
 	int count = 0;
-
+	
 	int DFSCount(Node2 curr, char c) {
-		Node2 temp = null;
-		for (int i = 0; i < curr.children.size(); i++) {
-			temp = findChild(curr, c);
-			if (temp == null) {
-				DFSCount(curr.children.get(i), c);
-			} else {
+		for (Node2 cur : curr.children) {
+			if (cur.ch == '$') {
 				count++;
 			}
+			DFSCount(cur, c);
 		}
 		return count;
 	}
@@ -140,12 +135,12 @@ public class Trie {
 	}
 
 	public static void main(String[] args) {
-		String str = "bananab";
+		String str = "banana";
 		Trie tr = new Trie();
 		tr.createSuffixTrie(str);
 		// System.out.println(tr.doesExist("an"));
-		// System.out.println(tr.occurNumOfSubstring("b$"));
-		System.out.println(tr.longestRepeatedSubstr("banana"));
+		 System.out.println(tr.occurNumOfSubstring("an"));
+//		System.out.println(tr.longestRepeatedSubstr("banana"));
 	}
 
 }
