@@ -8,7 +8,6 @@ class Node2 {
 	public boolean isTerminalChar;
 	public List<Node2> children;
 
-
 	public Node2(char ch) {
 		this.ch = ch;
 		this.isTerminalChar = false;
@@ -89,21 +88,16 @@ public class Trie {
 				return 0;
 			}
 		}
-		if (curr.ch == arr[arr.length - 1]) {
-			count = DFSCount(curr, '$');
-		}
+		int count = DFSCount(curr, 0);
 		return count;
-
 	}
 
-	int count = 0;
-	
-	int DFSCount(Node2 curr, char c) {
+	int DFSCount(Node2 curr, int count) {
 		for (Node2 cur : curr.children) {
 			if (cur.ch == '$') {
 				count++;
 			}
-			DFSCount(cur, c);
+			count = DFSCount(cur, count);
 		}
 		return count;
 	}
@@ -111,36 +105,29 @@ public class Trie {
 	public String longestRepeatedSubstr(String str) {
 		StringBuilder sb = new StringBuilder();
 		String result = "";
-		DFS(result, sb, root);
+		result = DFS(result, sb, root);
 		return result;
 	}
 
-	void DFS(String result, StringBuilder sb, Node2 current) {
-		System.out.println(sb.toString());
-		System.out.println(count);
-		if (occurNumOfSubstring(sb.toString()) < 2) {
-			System.out.println("1111");
-			result = result.length() > sb.toString().length() ? result : sb.toString();
-			// System.out.println(result);
-			return;
-		}
-		// System.out.println(sb.toString() + "]]");
+	String DFS(String result, StringBuilder sb, Node2 current) {
 		for (Node2 cur : current.children) {
-			// System.out.println(sb.toString() + "||");
 			sb.append(cur.ch);
-			// System.out.println(sb.toString());
-			DFS(result, sb, cur);
+			if (occurNumOfSubstring(sb.toString()) >= 2){
+				result = result.length() > sb.toString().length() ? result : sb.toString();
+			}
+			result = DFS(result, sb, cur);
 			sb.deleteCharAt(sb.length() - 1);
 		}
+		return result;
 	}
 
 	public static void main(String[] args) {
-		String str = "banana";
+		String str = "bananan";
 		Trie tr = new Trie();
 		tr.createSuffixTrie(str);
 		// System.out.println(tr.doesExist("an"));
-		 System.out.println(tr.occurNumOfSubstring("an"));
-//		System.out.println(tr.longestRepeatedSubstr("banana"));
+		 System.out.println(tr.occurNumOfSubstring("anan"));
+		System.out.println(tr.longestRepeatedSubstr("bananan"));
 	}
 
 }
