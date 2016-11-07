@@ -12,14 +12,15 @@ public class SelectionSort {
 				if (arr[j] < arr[minIndex]) {
 					minIndex = j;
 				}
-				if (i != minIndex) {
-					temp = arr[minIndex];
-					arr[minIndex] = arr[i];
-					arr[i] = temp;
-				}
+			}
+			if (i != minIndex) {
+				temp = arr[minIndex];
+				arr[minIndex] = arr[i];
+				arr[i] = temp;
 			}
 		}
-		for (int m = 0; m < arr.length; m++) // these two lines are for testing output
+		for (int m = 0; m < arr.length; m++) // these two lines are for testing
+												// output
 			System.out.print(arr[m] + " ");
 	}
 

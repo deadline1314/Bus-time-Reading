@@ -413,10 +413,10 @@ public class BinarySearchTree {
 		// System.out.println(bs.getHeight());
 		// System.out.println(bs.getSize());
 		// System.out.println(bs.isBST());
-		// bs.printLevelOrder();
+		 bs.printLevelOrder();
 		// bs.printZigZag();
 //		bs.printPerimeter();
-		bs.printPerimeter1();
+//		bs.printPerimeter1();
 //		bs.bottomView();
 //		System.out.println(bs.getNodeLevel(7));
 

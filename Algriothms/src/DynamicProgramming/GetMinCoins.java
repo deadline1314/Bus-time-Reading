@@ -9,8 +9,6 @@ public class GetMinCoins {
 				if (coins[i] > j) {
 					if (i > 0)
 						matrix[i][j] = matrix[i - 1][j];
-					else
-						matrix[i][j] = 0;
 				} else {
 					matrix[i][j] = matrix[i][j - coins[i]] + 1;
 				}
@@ -25,7 +23,7 @@ public class GetMinCoins {
 
 	public static void main(String[] args) {
 		GetMinCoins gmc = new GetMinCoins();
-		int[] coins = { 1, 5, 6, 8 };
+		int[] coins = {5, 1, 6, 8 };
 		System.out.println(gmc.getMinCoins(coins, 11));
 
 	}

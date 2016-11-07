@@ -17,15 +17,33 @@ public class InsertionSort {
 			}
 			arr[j + 1] = key;
 		}
-		for (int m = 0; m < arr.length; m++) // these two lines are for testing
-												// output
+		// these two lines are for testing output
+		for (int m = 0; m < arr.length; m++)
+			System.out.print(arr[m] + " ");
+	}
+
+	static void insertionSort2(int[] arr) {
+		int temp;
+		for (int i = 1; i < arr.length; i++) {
+			for (int j = i - 1; j >= 0; j--) {
+				if (arr[j] > arr[j + 1]) {
+					temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				} else {
+					break;
+				}
+			}
+		}
+		// these two lines are for testing output
+		for (int m = 0; m < arr.length; m++)
 			System.out.print(arr[m] + " ");
 	}
 
 	public static void main(String[] args) {
 		InsertionSort sort = new InsertionSort();
 		int[] nums = { 3, 4, 5, 7, 1 };
-		sort.insertionSort(nums);
+		sort.insertionSort2(nums);
 
 	}
 

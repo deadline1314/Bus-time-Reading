@@ -11,7 +11,6 @@ public class QuickSort {
 	static void quickSort(int[] arr, int left, int right){
 		int i =left;
 		int j = right;
-		int temp;
 		int pivot = arr[(left+right)/2];
 		while(i<=j){
 			while(arr[i]<pivot)
@@ -19,7 +18,7 @@ public class QuickSort {
 			while(arr[j]>pivot)
 				j--;
 			if(i<=j){
-				temp=arr[i];
+				int temp=arr[i];
 				arr[i]=arr[j];
 				arr[j]=temp;
 				i++;
@@ -37,7 +36,6 @@ public class QuickSort {
 		QuickSort sort = new QuickSort();
 		int[] nums = { 3, 4, 5, 7, 1 };
 		sort.quickSort(nums);
-
 	}
 
 }

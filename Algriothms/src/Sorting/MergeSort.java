@@ -4,12 +4,14 @@ public class MergeSort {
 
 	static void mergeSort(int[] arr) {
 		mergeSortAux(arr, 0, arr.length - 1);
-		
-		for (int m = 0; m < arr.length; m++) // these two lines are for testing output
+
+		// these two lines are for testing output
+		for (int m = 0; m < arr.length; m++)
 			System.out.print(arr[m] + " ");
 	}
 
-	static void mergeSortAux(int[] arr, int low, int high) { //divide into two parts
+	// divide into two parts
+	static void mergeSortAux(int[] arr, int low, int high) {
 		if (low >= high)
 			return;
 		int mid = (low + high) / 2;
@@ -18,7 +20,7 @@ public class MergeSort {
 		merge(arr, low, high);
 	}
 
-	static void merge(int[] arr, int low, int high) { //merge and sort
+	static void merge(int[] arr, int low, int high) { // merge and sort
 		int mid = (low + high) / 2;
 		int[] temp = new int[high - low + 1];
 
@@ -48,7 +50,6 @@ public class MergeSort {
 			i++;
 		}
 	}
-	
 
 	public static void main(String[] args) {
 		MergeSort sort = new MergeSort();

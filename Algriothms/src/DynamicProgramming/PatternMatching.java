@@ -5,6 +5,14 @@ public class PatternMatching {
 	boolean patternMatching(String str, String pattern) {
 		boolean[][] matrix = new boolean[str.length() + 1][pattern.length() + 1];
 		matrix[0][0] = true;
+		
+		for(int i = 1; i < matrix.length; i++){
+			if(i == 1 && pattern.charAt(0) == '*'){
+				matrix[i][0] = true;
+				continue;
+			}
+		}
+		
 		for (int i = 1; i < matrix.length; i++) {
 			for (int j = 1; j < matrix[0].length; j++) {
 				if (str.charAt(i-1) == pattern.charAt(j-1) || pattern.charAt(j-1) == '?')
@@ -18,8 +26,8 @@ public class PatternMatching {
 
 	public static void main(String[] args) {
 		PatternMatching pm = new PatternMatching();
-		String str = "xaylmz";
-		String pattern = "x?y*z";
+		String str = "yyz";
+		String pattern = "*";
 		System.out.println(pm.patternMatching(str, pattern));
 
 	}
